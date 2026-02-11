@@ -22,19 +22,19 @@ O objetivo é ter o ambiente rodando e o banco de dados pronto para receber tabe
     - [X] Criar projeto Vite (`npm create vite@latest frontend -- --template react-ts`).
     - [X] Instalar e configurar o TailwindCSS.
     - [X] Instalar bibliotecas essenciais: `axios`, `react-router-dom` (ou tanstack router).
-- [ ] **Infraestrutura (Docker)**
-    - [ ] Criar `docker-compose.yml` na raiz configurando o serviço do PostgreSQL.
-    - [ ] Rodar o banco (`docker-compose up -d`) e conectar via DBeaver/PgAdmin para testar.
+- [X] **Infraestrutura (Docker)**
+    - [X] Criar `docker-compose.yml` na raiz configurando o serviço do PostgreSQL.
+    - [X] Rodar o banco (`docker-compose up -d`) e conectar via DBeaver/PgAdmin para testar.
 
 ---
 
 ### 📅 Fase 2: Modelagem e CRUDs Básicos - Backend (Dia 2)
 Foco total na API e persistência de dados. Lembre-se: **Código em Inglês**.
 
-- [ ] **Modelagem de Entidades (JPA/Panache)**
-    - [ ] Criar Entity `RawMaterial` (id, name, stockQuantity).
-    - [ ] Criar Entity `Product` (id, name, price).
-    - [ ] Criar Entity `ProductComposition` (Relacionamento N:N - id, product, rawMaterial, requiredQuantity).
+- [X] **Modelagem de Entidades (JPA/Panache)**
+    - [X] Criar Entity `RawMaterial` (id, name, stockQuantity).
+    - [X] Criar Entity `Product` (id, name, price).
+    - [X] Criar Entity `ProductComposition` (Relacionamento N:N - id, product, rawMaterial, requiredQuantity).
 - [ ] **Repositórios e Services**
     - [ ] Criar Repositories (ou usar o padrão Active Record do Panache).
     - [ ] Criar DTOs (Data Transfer Objects) para não expor as entidades diretamente.
