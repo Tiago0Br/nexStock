@@ -35,13 +35,13 @@ Foco total na API e persistência de dados. Lembre-se: **Código em Inglês**.
     - [X] Criar Entity `RawMaterial` (id, name, stockQuantity).
     - [X] Criar Entity `Product` (id, name, price).
     - [X] Criar Entity `ProductComposition` (Relacionamento N:N - id, product, rawMaterial, requiredQuantity).
-- [ ] **Repositórios e Services**
-    - [ ] Criar Repositories (ou usar o padrão Active Record do Panache).
-    - [ ] Criar DTOs (Data Transfer Objects) para não expor as entidades diretamente.
-- [ ] **Endpoints Básicos (REST)**
-    - [ ] Implementar `GET /raw-materials` e `POST /raw-materials`.
-    - [ ] Implementar `GET /products` e `POST /products` (apenas dados básicos, sem composição ainda).
-    - [ ] Testar endpoints via Postman/Insomnia/Curl.
+- [X] **Repositórios e Services**
+    - [X] Usar o padrão Active Record do Panache.
+    - [X] Criar DTOs (Data Transfer Objects) para não expor as entidades diretamente.
+- [X] **Endpoints Básicos (REST)**
+    - [X] Implementar `GET /raw-materials` e `POST /raw-materials`.
+    - [X] Implementar `GET /products` e `POST /products` (apenas dados básicos, sem composição ainda).
+    - [X] Testar endpoints via Postman/Insomnia/Curl.
 
 ---
 
