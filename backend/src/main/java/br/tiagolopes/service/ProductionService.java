@@ -74,7 +74,9 @@ public class ProductionService {
     private void deductStock(Product product, Map<Long, Integer> stock) {
         for (ProductComposition item : product.composition) {
             Long materialId = item.rawMaterial.id;
-            stock.compute(materialId, (k, currentStock) -> currentStock - item.quantityRequired);
+            stock.compute(materialId, (k, currentStock) ->
+                (currentStock != null ? currentStock : 0) - item.quantityRequired
+            );
         }
     }
 }
