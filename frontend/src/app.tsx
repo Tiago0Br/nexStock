@@ -1,3 +1,30 @@
+import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+import { MainLayout } from './components/main-layout'
+import { DashboardPage } from './pages/dashboard'
+import { ProductsPage } from './pages/products'
+import { MaterialsPage } from './pages/materials'
+
 export function App() {
-  return <h1 className="text-3xl text-blue-800">Hello World</h1>
+  const router = createBrowserRouter([
+    {
+      path: '/',
+      element: <MainLayout />,
+      children: [
+        {
+          path: '/',
+          element: <DashboardPage />
+        },
+        {
+          path: '/products',
+          element: <ProductsPage />
+        },
+        {
+          path: '/materials',
+          element: <MaterialsPage />
+        }
+      ]
+    }
+  ])
+
+  return <RouterProvider router={router} />
 }
