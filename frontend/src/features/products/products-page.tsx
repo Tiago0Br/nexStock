@@ -5,7 +5,7 @@ export function ProductsPage() {
   return (
     <div className="space-y-6">
       <div className="flex justify-between items-center">
-        <h2 className="text-3xl font-bold tracking-tight text-slate-900">Produtos</h2>
+        <h1 className="text-3xl font-bold tracking-tight text-foreground">Produtos</h1>
 
         <ProductFormDialog />
       </div>

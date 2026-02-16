@@ -14,7 +14,7 @@ export function MaterialsTable() {
   const { materials, isLoading } = useMaterialStore()
 
   return (
-    <div className="border rounded-lg bg-white shadow-sm">
+    <div className="border rounded-lg shadow-sm">
       <Table>
         <TableHeader>
           <TableRow>

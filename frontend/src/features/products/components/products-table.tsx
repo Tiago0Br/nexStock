@@ -17,7 +17,7 @@ export function ProductsTable() {
   }, [fetchProducts])
 
   return (
-    <div className="border rounded-lg bg-white shadow-sm">
+    <div className="border rounded-lg shadow-sm">
       <Table>
         <TableHeader>
           <TableRow>

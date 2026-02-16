@@ -126,7 +126,7 @@ export function ProductFormDialog() {
               {fields.map((field, index) => (
                 <div
                   key={field.id}
-                  className="flex gap-4 items-end mb-4 bg-slate-50 p-3 rounded-md border"
+                  className="flex gap-4 items-end mb-4 p-3 rounded-md border"
                 >
                   <FormField
                     control={form.control}
@@ -174,7 +174,7 @@ export function ProductFormDialog() {
                     type="button"
                     variant="ghost"
                     size="icon"
-                    className="text-red-500 hover:text-red-700 hover:bg-red-100 mb-0.5"
+                    className="text-red-500 hover:text-red-700 hover:bg-red-50 mb-0.5"
                     onClick={() => remove(index)}
                   >
                     <Trash2Icon className="size-5" />

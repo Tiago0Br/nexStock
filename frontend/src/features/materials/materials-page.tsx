@@ -13,9 +13,9 @@ export function MaterialsPage() {
   return (
     <div className="space-y-6">
       <div className="flex justify-between items-center">
-        <h2 className="text-3xl font-bold tracking-tight text-slate-900">
+        <h1 className="text-3xl font-bold tracking-tight text-foreground">
           Matérias-Primas
-        </h2>
+        </h1>
         <MaterialFormDialog />
       </div>
 

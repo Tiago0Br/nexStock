@@ -1,6 +1,7 @@
-import { Outlet, NavLink } from 'react-router-dom'
-import { PackageIcon, BoxIcon, LayoutDashboardIcon, MenuIcon } from 'lucide-react'
+import { BoxIcon, LayoutDashboardIcon, MenuIcon, PackageIcon } from 'lucide-react'
 import { useState } from 'react'
+import { NavLink, Outlet } from 'react-router-dom'
+import { ThemeToggle } from '../theme-toggle'
 
 export function MainLayout() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
@@ -13,10 +14,10 @@ export function MainLayout() {
 
   return (
     <div className="flex h-screen bg-background">
-      <aside className="hidden md:flex flex-col w-64 bg-slate-900 text-white">
-        <div className="p-4 flex items-center justify-center border-b border-slate-700">
-          <h1 className="text-xl font-bold tracking-wider">
-            INDÚSTRIA<span className="text-blue-400">FLEX</span>
+      <aside className="hidden md:flex flex-col w-64 bg-sidebar border-r border-sidebar-border">
+        <div className="p-4 flex items-center justify-center border-b border-sidebar-border">
+          <h1 className="text-xl font-bold tracking-wider text-sidebar-foreground">
+            INDÚSTRIA<span className="text-primary">FLEX</span>
           </h1>
         </div>
         <nav className="flex-1 p-4 space-y-2">
@@ -26,7 +27,9 @@ export function MainLayout() {
               to={item.path}
               className={({ isActive }) =>
                 `flex items-center space-x-3 px-4 py-3 rounded-lg transition-colors ${
-                  isActive ? 'bg-primary text-white' : 'text-slate-300 hover:bg-slate-800'
+                  isActive
+                    ? 'bg-sidebar-primary text-sidebar-primary-foreground'
+                    : 'text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground'
                 }`
               }
             >
@@ -35,20 +38,27 @@ export function MainLayout() {
             </NavLink>
           ))}
         </nav>
+        <div className="p-4 border-t border-sidebar-border">
+          <ThemeToggle />
+        </div>
       </aside>
 
       <div className="flex-1 flex flex-col overflow-hidden">
-        <header className="md:hidden bg-slate-900 text-white p-4 flex justify-between items-center">
-          <h1 className="text-lg font-bold">
-            INDÚSTRIA<span className="text-blue-400">FLEX</span>
+        <header className="md:hidden bg-sidebar border-b border-sidebar-border p-4 flex justify-between items-center">
+          <h1 className="text-lg font-bold text-sidebar-foreground">
+            INDÚSTRIA<span className="text-primary">FLEX</span>
           </h1>
-          <button type="button" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
+          <button
+            type="button"
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            className="text-sidebar-foreground"
+          >
             <MenuIcon size={24} />
           </button>
         </header>
 
         {isMobileMenuOpen && (
-          <nav className="md:hidden bg-slate-800 text-white p-2 space-y-1">
+          <nav className="md:hidden bg-sidebar border-b border-sidebar-border p-2 space-y-1">
             {navItems.map((item) => (
               <NavLink
                 key={item.path}
@@ -56,7 +66,9 @@ export function MainLayout() {
                 onClick={() => setIsMobileMenuOpen(false)}
                 className={({ isActive }) =>
                   `flex items-center space-x-3 px-4 py-3 rounded-lg ${
-                    isActive ? 'bg-primary' : 'hover:bg-slate-700'
+                    isActive
+                      ? 'bg-sidebar-primary text-sidebar-primary-foreground'
+                      : 'text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground'
                   }`
                 }
               >
@@ -64,6 +76,9 @@ export function MainLayout() {
                 <span>{item.label}</span>
               </NavLink>
             ))}
+            <div className="pt-2 border-t border-sidebar-border">
+              <ThemeToggle />
+            </div>
           </nav>
         )}
 

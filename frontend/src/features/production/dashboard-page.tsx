@@ -40,10 +40,10 @@ export function DashboardPage() {
   return (
     <div className="space-y-8">
       <div>
-        <h2 className="text-3xl font-bold tracking-tight text-slate-900">
+        <h1 className="text-3xl font-bold tracking-tight text-foreground">
           Dashboard de Produção
-        </h2>
-        <p className="text-slate-500 mt-2">
+        </h1>
+        <p className="text-muted-foreground mt-2">
           Visão estratégica sugerida pelo sistema para maximização de lucros com base no
           estoque atual.
         </p>
@@ -58,7 +58,7 @@ export function DashboardPage() {
             <DollarSignIcon className="size-4 text-primary" />
           </CardHeader>
           <CardContent>
-            <div className="text-3xl font-bold">
+            <div className="text-3xl font-bold text-foreground">
               {plan ? formatCurrency(plan.totalValue) : 'R$ 0,00'}
             </div>
             <p className="text-xs text-primary mt-1">
@@ -69,29 +69,35 @@ export function DashboardPage() {
 
         <Card className="shadow-sm">
           <CardHeader className="flex flex-row items-center justify-between pb-2 space-y-0">
-            <CardTitle className="text-sm font-medium text-slate-500">
+            <CardTitle className="text-sm font-medium text-muted-foreground">
               Total de Itens Produzidos
             </CardTitle>
-            <PackageIcon className="size-4 text-slate-400" />
+            <PackageIcon className="size-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
-            <div className="text-3xl font-bold text-slate-800">
+            <div className="text-3xl font-bold text-foreground">
               {plan ? plan.totalItems : 0}
             </div>
-            <p className="text-xs text-slate-500 mt-1">Unidades prontas para venda</p>
+            <p className="text-xs text-muted-foreground mt-1">
+              Unidades prontas para venda
+            </p>
           </CardContent>
         </Card>
 
         <Card className="shadow-sm hidden lg:block">
           <CardHeader className="flex flex-row items-center justify-between pb-2 space-y-0">
-            <CardTitle className="text-sm font-medium text-slate-500">
+            <CardTitle className="text-sm font-medium text-muted-foreground">
               Status do Algoritmo
             </CardTitle>
             <TrendingUpIcon className="size-4 text-emerald-500" />
           </CardHeader>
           <CardContent>
-            <div className="text-lg font-bold text-emerald-600 mt-1">Otimizado</div>
-            <p className="text-xs text-slate-500 mt-1">Algoritmo Guloso aplicado</p>
+            <div className="text-lg font-bold text-emerald-600 dark:text-emerald-400 mt-1">
+              Otimizado
+            </div>
+            <p className="text-xs text-muted-foreground mt-1">
+              Algoritmo Guloso aplicado
+            </p>
           </CardContent>
         </Card>
       </div>
@@ -117,7 +123,10 @@ export function DashboardPage() {
             <TableBody>
               {isPlanEmpty ? (
                 <TableRow>
-                  <TableCell colSpan={4} className="text-center py-10 text-slate-500">
+                  <TableCell
+                    colSpan={4}
+                    className="text-center py-10 text-muted-foreground"
+                  >
                     Estoque insuficiente para produzir qualquer item cadastrado.
                     <br /> Adicione mais matérias-primas no sistema.
                   </TableCell>
@@ -125,18 +134,18 @@ export function DashboardPage() {
               ) : (
                 plan.productionList.map((item) => (
                   <TableRow key={item.productName}>
-                    <TableCell className="font-medium text-slate-900">
+                    <TableCell className="font-medium text-foreground">
                       {item.productName}
                     </TableCell>
                     <TableCell className="text-center">
-                      <span className="bg-slate-100 text-slate-700 px-3 py-1 rounded-full text-xs font-bold">
+                      <span className="bg-secondary text-secondary-foreground px-3 py-1 rounded-full text-xs font-bold">
                         {item.quantityToProduce} un
                       </span>
                     </TableCell>
-                    <TableCell className="text-right text-slate-500">
+                    <TableCell className="text-right text-muted-foreground">
                       {formatCurrency(item.unitPrice)}
                     </TableCell>
-                    <TableCell className="text-right font-bold text-blue-600">
+                    <TableCell className="text-right font-bold text-primary">
                       {formatCurrency(item.subTotal)}
                     </TableCell>
                   </TableRow>
