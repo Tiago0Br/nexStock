@@ -4,6 +4,7 @@ import { Toaster } from './components/ui/sonner'
 import { MaterialsPage } from './features/materials'
 import { DashboardPage } from './features/production'
 import { ProductsPage } from './features/products'
+import { NotFoundPage } from './pages/not-found'
 
 export function App() {
   const router = createBrowserRouter([
@@ -22,6 +23,10 @@ export function App() {
         {
           path: '/materials',
           element: <MaterialsPage />
+        },
+        {
+          path: '*',
+          element: <NotFoundPage />
         }
       ]
     }
