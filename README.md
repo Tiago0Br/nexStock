@@ -93,10 +93,10 @@ Foco na tela de Produtos, que exige selecionar matérias-primas dinamicamente.
 ### 📅 Fase 6: Dashboard e Refinamento (Dia 6)
 Visualizar o resultado da inteligência do sistema.
 
-- [ ] **Tela de Planejamento de Produção (Dashboard)**
-    - [ ] Consumir o endpoint `/products/production-plan`.
-    - [ ] Exibir Cards com: "Valor Total Estimado", "Total de Itens Produzidos".
-    - [ ] Exibir Tabela: Produto | Qtd Sugerida | Valor Unitário | Subtotal.
+- [X] **Tela de Planejamento de Produção (Dashboard)**
+    - [X] Consumir o endpoint `/products/production-plan`.
+    - [X] Exibir Cards com: "Valor Total Estimado", "Total de Itens Produzidos".
+    - [X] Exibir Tabela: Produto | Qtd Sugerida | Valor Unitário | Subtotal.
 - [ ] **Refinamentos (UI/UX)**
     - [ ] Feedback ao usuário (Toasts de "Salvo com sucesso" ou "Erro ao conectar").
     - [ ] Tratamento de erros (ex: tentar criar produto sem nome).
@@ -125,7 +125,7 @@ O polimento final que garante a contratação.
 ---
 
 ### 🚀 Status
-- [ ] **Backend Pronto**
+- [X] **Backend Pronto**
 - [ ] **Frontend Pronto**
 - [ ] **Integração Completa**
 - [ ] **Pronto para Entrega**

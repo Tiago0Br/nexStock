@@ -2,8 +2,8 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import { MainLayout } from './components/layout/main-layout'
 import { Toaster } from './components/ui/sonner'
 import { MaterialsPage } from './features/materials'
+import { DashboardPage } from './features/production'
 import { ProductsPage } from './features/products'
-import { DashboardPage } from './pages/dashboard'
 
 export function App() {
   const router = createBrowserRouter([
