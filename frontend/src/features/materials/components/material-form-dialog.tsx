@@ -19,6 +19,13 @@ import {
   FormMessage
 } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue
+} from '@/components/ui/select'
 import type { RawMaterial } from '@/types'
 import { type MaterialFormValues, materialFormSchema } from '../schemas/material.schema'
 import { useMaterialStore } from '../stores/use-material-store'
@@ -42,7 +49,8 @@ export function MaterialFormDialog({
     resolver: zodResolver(materialFormSchema),
     defaultValues: {
       name: material?.name ?? '',
-      stockQuantity: material?.stockQuantity ?? 0
+      stockQuantity: material?.stockQuantity ?? 0,
+      unit: material?.unit ?? 'UN'
     }
   })
 
@@ -50,22 +58,25 @@ export function MaterialFormDialog({
     if (material) {
       form.reset({
         name: material.name,
-        stockQuantity: material.stockQuantity
+        stockQuantity: material.stockQuantity,
+        unit: material?.unit ?? 'UN'
       })
     }
   }, [material, form])
 
-  const onSubmit = async ({ name, stockQuantity }: MaterialFormValues) => {
+  const onSubmit = async ({ name, stockQuantity, unit }: MaterialFormValues) => {
     if (isEditing && material?.id) {
       await updateMaterial(material.id, {
         name,
-        stockQuantity
+        stockQuantity,
+        unit
       })
       toast.success('Matéria-prima atualizada com sucesso!')
     } else {
       await createMaterial({
         name,
-        stockQuantity
+        stockQuantity,
+        unit
       })
       toast.success('Matéria-prima cadastrada com sucesso!')
     }
@@ -109,6 +120,31 @@ export function MaterialFormDialog({
                   <FormControl>
                     <Input type="number" placeholder="Ex: 150" {...field} />
                   </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+
+            <FormField
+              control={form.control}
+              name="unit"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Unidade de Medida</FormLabel>
+                  <Select onValueChange={field.onChange} defaultValue={field.value}>
+                    <FormControl>
+                      <SelectTrigger>
+                        <SelectValue placeholder="Selecione a unidade" />
+                      </SelectTrigger>
+                    </FormControl>
+                    <SelectContent>
+                      <SelectItem value="UN">Unidade (UN)</SelectItem>
+                      <SelectItem value="KG">Quilograma (KG)</SelectItem>
+                      <SelectItem value="G">Grama (G)</SelectItem>
+                      <SelectItem value="L">Litro (L)</SelectItem>
+                      <SelectItem value="ML">Mililitro (ML)</SelectItem>
+                    </SelectContent>
+                  </Select>
                   <FormMessage />
                 </FormItem>
               )}

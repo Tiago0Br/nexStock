@@ -97,10 +97,10 @@ Visualizar o resultado da inteligência do sistema.
     - [X] Consumir o endpoint `/products/production-plan`.
     - [X] Exibir Cards com: "Valor Total Estimado", "Total de Itens Produzidos".
     - [X] Exibir Tabela: Produto | Qtd Sugerida | Valor Unitário | Subtotal.
-- [ ] **Refinamentos (UI/UX)**
-    - [ ] Feedback ao usuário (Toasts de "Salvo com sucesso" ou "Erro ao conectar").
-    - [ ] Tratamento de erros (ex: tentar criar produto sem nome).
-    - [ ] Verificar responsividade (telas menores).
+- [X] **Refinamentos (UI/UX)**
+    - [X] Feedback ao usuário (Toasts de "Salvo com sucesso" ou "Erro ao conectar").
+    - [X] Tratamento de erros (ex: tentar criar produto sem nome).
+    - [X] Verificar responsividade (telas menores).
 
 ---
 
@@ -126,6 +126,6 @@ O polimento final que garante a contratação.
 
 ### 🚀 Status
 - [X] **Backend Pronto**
-- [ ] **Frontend Pronto**
-- [ ] **Integração Completa**
+- [X] **Frontend Pronto**
+- [X] **Integração Completa**
 - [ ] **Pronto para Entrega**

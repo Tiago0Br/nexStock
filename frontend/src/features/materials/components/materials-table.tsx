@@ -72,8 +72,8 @@ export function MaterialsTable() {
                   </TableCell>
                   <TableCell className="text-right">
                     <div className="flex justify-end gap-1">
-                      <Skeleton className="h-8 w-8" />
-                      <Skeleton className="h-8 w-8" />
+                      <Skeleton className="size-8" />
+                      <Skeleton className="size-8" />
                     </div>
                   </TableCell>
                 </TableRow>
@@ -89,7 +89,9 @@ export function MaterialsTable() {
                 <TableRow key={material.id}>
                   <TableCell className="font-medium">{material.id}</TableCell>
                   <TableCell>{material.name}</TableCell>
-                  <TableCell className="text-right">{material.stockQuantity}</TableCell>
+                  <TableCell className="text-right">
+                    {material.stockQuantity} ({material.unit})
+                  </TableCell>
                   <TableCell className="text-right">
                     <div className="flex justify-end gap-1">
                       <Button

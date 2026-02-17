@@ -33,6 +33,7 @@ public class RawMaterialResource {
         }
         entity.name = materialData.name;
         entity.stockQuantity = materialData.stockQuantity;
+        entity.unit = materialData.unit;
         return Response.ok(entity).build();
     }
 

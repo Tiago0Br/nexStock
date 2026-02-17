@@ -110,7 +110,7 @@ export function ProductsTable() {
                         key={c.id}
                         className="inline-block bg-slate-100 rounded-full px-2 py-1 text-xs font-semibold text-slate-600 mr-2 mb-1"
                       >
-                        {c.rawMaterial.name} ({c.quantityRequired}x)
+                        {c.rawMaterial.name} ({c.quantityRequired} {c.rawMaterial.unit})
                       </span>
                     ))}
                   </TableCell>

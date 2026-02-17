@@ -2,6 +2,7 @@ export interface RawMaterial {
   id: number
   name: string
   stockQuantity: number
+  unit: 'KG' | 'G' | 'L' | 'ML' | 'UN'
 }
 
 export type SaveRawMaterial = Omit<RawMaterial, 'id'> & {

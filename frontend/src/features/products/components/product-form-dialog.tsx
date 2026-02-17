@@ -180,7 +180,7 @@ export function ProductFormDialog({
                           <SelectContent>
                             {materials.map((m) => (
                               <SelectItem key={m.id} value={m.id.toString()}>
-                                {m.name} (Estoque: {m.stockQuantity})
+                                {m.name} (Estoque: {m.stockQuantity} {m.unit})
                               </SelectItem>
                             ))}
                           </SelectContent>

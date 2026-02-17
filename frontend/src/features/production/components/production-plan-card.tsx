@@ -61,7 +61,7 @@ export function ProductionPlanCard({ productionList }: ProductionPlanCardProps) 
                   </TableCell>
                   <TableCell className="text-center">
                     <span className="bg-secondary text-secondary-foreground px-3 py-1 rounded-full text-xs font-bold">
-                      {item.quantityToProduce} un
+                      {item.quantityToProduce} unidades
                     </span>
                   </TableCell>
                   <TableCell className="text-right text-muted-foreground">

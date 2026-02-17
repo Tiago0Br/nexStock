@@ -12,6 +12,9 @@ public class RawMaterial extends PanacheEntity {
     @Column(nullable = false)
     public Integer stockQuantity;
 
+    @Column(nullable = false, length = 10)
+    public String unit;
+
     public static RawMaterial findByName(String name) {
         return find("name", name).firstResult();
     }
