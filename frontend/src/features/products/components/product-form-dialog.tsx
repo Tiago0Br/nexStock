@@ -29,13 +29,21 @@ import {
   SelectValue
 } from '@/components/ui/select'
 import { useMaterialStore } from '@/features/materials/stores/use-material-store'
+import type { Product } from '@/types'
 import { type ProductFormValues, productFormSchema } from '../schemas/product.schema'
 import { useProductStore } from '../stores/use-product-store'
 
-export function ProductFormDialog() {
-  const { createProduct } = useProductStore()
+interface ProductFormDialogProps {
+  trigger: React.ReactNode
+  product?: Product
+}
+
+export function ProductFormDialog({ trigger, product }: ProductFormDialogProps) {
+  const { createProduct, updateProduct } = useProductStore()
   const { fetchMaterials, materials } = useMaterialStore()
   const [isOpen, setIsOpen] = useState(false)
+
+  const isEditing = !!product
 
   useEffect(() => {
     fetchMaterials()
@@ -44,9 +52,15 @@ export function ProductFormDialog() {
   const form = useForm<ProductFormValues>({
     resolver: zodResolver(productFormSchema),
     defaultValues: {
-      name: '',
-      price: 0,
-      composition: []
+      name: product?.name ?? '',
+      price: product?.price ?? 0,
+      composition:
+        product?.composition.map((c) => {
+          return {
+            rawMaterialId: c.rawMaterial.id,
+            quantity: c.quantityRequired
+          }
+        }) ?? []
     }
   })
 
@@ -56,7 +70,11 @@ export function ProductFormDialog() {
   })
 
   const onSubmit = async (values: ProductFormValues) => {
-    await createProduct(values)
+    if (isEditing) {
+      await updateProduct(product.id as number, values)
+    } else {
+      await createProduct(values)
+    }
     form.reset()
     setIsOpen(false)
 
@@ -65,15 +83,13 @@ export function ProductFormDialog() {
 
   return (
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
-      <DialogTrigger asChild>
-        <Button onClick={() => form.reset()}>
-          <PlusIcon className="mr-2 size-4" /> Novo Produto
-        </Button>
-      </DialogTrigger>
+      <DialogTrigger asChild>{trigger}</DialogTrigger>
       <DialogContent className="sm:max-w-137.5 max-h-[90vh] overflow-y-auto">
         <DialogHeader>
           <DialogTitle>Produto</DialogTitle>
-          <DialogDescription>Cadastrar novo produto</DialogDescription>
+          <DialogDescription>
+            {isEditing ? 'Atualizar Produto' : 'Cadastrar Novo Produto'}
+          </DialogDescription>
         </DialogHeader>
 
         <Form {...form}>
@@ -195,7 +211,7 @@ export function ProductFormDialog() {
               <Button type="button" variant="outline" onClick={() => setIsOpen(false)}>
                 Cancelar
               </Button>
-              <Button type="submit">Salvar Produto</Button>
+              <Button type="submit">{isEditing ? 'Atualizar' : 'Salvar'}</Button>
             </div>
           </form>
         </Form>

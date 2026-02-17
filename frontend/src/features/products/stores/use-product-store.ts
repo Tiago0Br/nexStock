@@ -8,6 +8,8 @@ interface ProductStore {
   isLoading: boolean
   fetchProducts: () => Promise<void>
   createProduct: (product: ProductFormValues) => Promise<void>
+  updateProduct: (productId: number, product: ProductFormValues) => Promise<void>
+  deleteProduct: (productId: number) => Promise<void>
 }
 
 export const useProductStore = create<ProductStore>((set) => ({
@@ -31,6 +33,24 @@ export const useProductStore = create<ProductStore>((set) => ({
       useProductStore.getState().fetchProducts()
     } catch (error) {
       console.error('Erro ao criar produto:', error)
+    }
+  },
+
+  updateProduct: async (productId, productData) => {
+    try {
+      await api.put(`/products/${productId}`, productData)
+      useProductStore.getState().fetchProducts()
+    } catch (error) {
+      console.error('Erro ao atualizar o produto:', error)
+    }
+  },
+
+  deleteProduct: async (productId) => {
+    try {
+      await api.delete(`/products/${productId}`)
+      useProductStore.getState().fetchProducts()
+    } catch (error) {
+      console.error('Erro ao deletar o produto:', error)
     }
   }
 }))
