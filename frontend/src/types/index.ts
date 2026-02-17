@@ -1,21 +1,29 @@
 export interface RawMaterial {
-  id?: number
+  id: number
   name: string
   stockQuantity: number
 }
 
-export interface CompositionItem {
-  rawMaterialId: number
-  quantity: number
+export type SaveRawMaterial = Omit<RawMaterial, 'id'> & {
+  id?: number
 }
 
 export interface Product {
-  id?: number
+  id: number
   name: string
   price: number
   composition: {
-    id?: number
+    id: number
     rawMaterial: RawMaterial
+    quantityRequired: number
+  }[]
+}
+
+export type SaveProduct = Omit<Product, 'id' | 'composition'> & {
+  id?: number
+  composition: {
+    id?: number
+    rawMaterialId: number
     quantityRequired: number
   }[]
 }

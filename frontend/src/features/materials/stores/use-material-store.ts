@@ -1,13 +1,13 @@
 import { create } from 'zustand'
 import { api } from '@/services/api'
-import type { RawMaterial } from '@/types'
+import type { RawMaterial, SaveRawMaterial } from '@/types'
 
 interface MaterialStore {
   materials: RawMaterial[]
   isLoading: boolean
   fetchMaterials: () => Promise<void>
-  createMaterial: (material: RawMaterial) => Promise<void>
-  updateMaterial: (materialId: number, material: RawMaterial) => Promise<void>
+  createMaterial: (material: SaveRawMaterial) => Promise<void>
+  updateMaterial: (materialId: number, material: SaveRawMaterial) => Promise<void>
   deleteMaterial: (materialId: number) => Promise<void>
 }
 
@@ -35,7 +35,7 @@ export const useMaterialStore = create<MaterialStore>((set) => ({
     }
   },
 
-  updateMaterial: async (materialId: number, material: RawMaterial) => {
+  updateMaterial: async (materialId, material) => {
     try {
       await api.put(`/raw-materials/${materialId}`, material)
       useMaterialStore.getState().fetchMaterials()
@@ -44,7 +44,7 @@ export const useMaterialStore = create<MaterialStore>((set) => ({
     }
   },
 
-  deleteMaterial: async (materialId: number) => {
+  deleteMaterial: async (materialId) => {
     set({ isLoading: true })
     try {
       await api.delete(`/raw-materials/${materialId}`)

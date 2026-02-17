@@ -1,4 +1,5 @@
 import { useEffect } from 'react'
+import { Skeleton } from '@/components/ui/skeleton'
 import { AlgorithmInfoCard } from './components/algorithm-info-card'
 import { ProductionPlanCard } from './components/production-plan-card'
 import { TotalItemsCard } from './components/total-items-card'
@@ -11,16 +12,6 @@ export function DashboardPage() {
   useEffect(() => {
     fetchPlan()
   }, [fetchPlan])
-
-  if (isLoading) {
-    return (
-      <div className="flex items-center justify-center h-[60vh]">
-        <p className="text-lg text-slate-500 animate-pulse">
-          Calculando o cenário de produção ideal...
-        </p>
-      </div>
-    )
-  }
 
   return (
     <div className="space-y-8">
@@ -35,16 +26,28 @@ export function DashboardPage() {
       </div>
 
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-        <TotalValueCard totalValue={plan?.totalValue} />
+        {!isLoading ? (
+          <TotalValueCard totalValue={plan?.totalValue} />
+        ) : (
+          <Skeleton className="h-32 w-full" />
+        )}
 
-        <TotalItemsCard totalItems={plan?.totalItems} />
+        {!isLoading ? (
+          <TotalItemsCard totalItems={plan?.totalItems} />
+        ) : (
+          <Skeleton className="h-32 w-full" />
+        )}
 
         <div className="hidden lg:block">
-          <AlgorithmInfoCard />
+          {!isLoading ? <AlgorithmInfoCard /> : <Skeleton className="h-32 w-full" />}
         </div>
       </div>
 
-      <ProductionPlanCard productionList={plan?.productionList ?? []} />
+      {!isLoading ? (
+        <ProductionPlanCard productionList={plan?.productionList ?? []} />
+      ) : (
+        <Skeleton className="h-96 w-full" />
+      )}
     </div>
   )
 }

@@ -2,6 +2,7 @@ import { PencilIcon, Trash2Icon } from 'lucide-react'
 import { useState } from 'react'
 import { toast } from 'sonner'
 import { Button } from '@/components/ui/button'
+import { Skeleton } from '@/components/ui/skeleton'
 import {
   Table,
   TableBody,
@@ -58,11 +59,25 @@ export function MaterialsTable() {
           </TableHeader>
           <TableBody>
             {isLoading ? (
-              <TableRow>
-                <TableCell colSpan={4} className="text-center py-6">
-                  Carregando dados do servidor...
-                </TableCell>
-              </TableRow>
+              Array.from({ length: 5 }).map((_, index) => (
+                <TableRow key={index}>
+                  <TableCell>
+                    <Skeleton className="h-4 w-12" />
+                  </TableCell>
+                  <TableCell>
+                    <Skeleton className="h-4 w-48" />
+                  </TableCell>
+                  <TableCell className="text-right">
+                    <Skeleton className="h-4 w-16 ml-auto" />
+                  </TableCell>
+                  <TableCell className="text-right">
+                    <div className="flex justify-end gap-1">
+                      <Skeleton className="h-8 w-8" />
+                      <Skeleton className="h-8 w-8" />
+                    </div>
+                  </TableCell>
+                </TableRow>
+              ))
             ) : materials.length === 0 ? (
               <TableRow>
                 <TableCell colSpan={4} className="text-center py-6">
@@ -89,7 +104,7 @@ export function MaterialsTable() {
                         variant="ghost"
                         size="icon"
                         className="text-red-500 hover:text-red-700 hover:bg-red-50"
-                        onClick={() => handleDelete(material.id as number)}
+                        onClick={() => handleDelete(material.id)}
                       >
                         <Trash2Icon className="size-4" />
                       </Button>

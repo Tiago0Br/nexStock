@@ -60,8 +60,8 @@ export function ProductFormDialog({
       composition:
         product?.composition.map((c) => {
           return {
-            rawMaterialId: c.rawMaterial.id,
-            quantity: c.quantityRequired
+            quantityRequired: c.quantityRequired,
+            rawMaterialId: c.rawMaterial.id
           }
         }) ?? []
     }
@@ -74,7 +74,7 @@ export function ProductFormDialog({
 
   const onSubmit = async (values: ProductFormValues) => {
     if (isEditing) {
-      await updateProduct(product.id as number, values)
+      await updateProduct(product.id, values)
     } else {
       await createProduct(values)
     }
@@ -92,7 +92,7 @@ export function ProductFormDialog({
         composition:
           product?.composition.map((c) => ({
             rawMaterialId: c.rawMaterial.id,
-            quantity: c.quantityRequired
+            quantityRequired: c.quantityRequired
           })) ?? []
       })
     }
@@ -151,7 +151,7 @@ export function ProductFormDialog({
                   type="button"
                   variant="outline"
                   size="sm"
-                  onClick={() => append({ rawMaterialId: 0, quantity: 0 })}
+                  onClick={() => append({ rawMaterialId: 0, quantityRequired: 0 })}
                 >
                   <PlusIcon className="mr-2 size-4" /> Adicionar Ingrediente
                 </Button>
@@ -179,7 +179,7 @@ export function ProductFormDialog({
                           </FormControl>
                           <SelectContent>
                             {materials.map((m) => (
-                              <SelectItem key={m.id} value={m.id?.toString() as string}>
+                              <SelectItem key={m.id} value={m.id.toString()}>
                                 {m.name} (Estoque: {m.stockQuantity})
                               </SelectItem>
                             ))}
@@ -192,7 +192,7 @@ export function ProductFormDialog({
 
                   <FormField
                     control={form.control}
-                    name={`composition.${index}.quantity`}
+                    name={`composition.${index}.quantityRequired`}
                     render={({ field }) => (
                       <FormItem className="w-32">
                         <FormLabel>Qtd. Necessária</FormLabel>

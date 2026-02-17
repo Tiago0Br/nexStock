@@ -7,7 +7,9 @@ export const productFormSchema = z.object({
     .array(
       z.object({
         rawMaterialId: z.coerce.number().min(1, 'Selecione uma matéria-prima.'),
-        quantity: z.coerce.number().min(1, 'A quantidade deve ser maior que zero.')
+        quantityRequired: z.coerce
+          .number({ message: 'A quantidade é obrigatória' })
+          .min(1, 'A quantidade deve ser maior que zero.')
       })
     )
     .min(1, 'Adicione pelo menos um ingrediente na receita.')

@@ -87,7 +87,7 @@ public class ProductResource {
                     ProductComposition composition = new ProductComposition();
                     composition.product = product;
                     composition.rawMaterial = material;
-                    composition.quantityRequired = item.quantity();
+                    composition.quantityRequired = item.quantityRequired();
 
                     product.composition.add(composition);
                 }

@@ -1,14 +1,13 @@
 import { create } from 'zustand'
 import { api } from '@/services/api'
-import type { Product } from '@/types'
-import type { ProductFormValues } from '../schemas/product.schema'
+import type { Product, SaveProduct } from '@/types'
 
 interface ProductStore {
   products: Product[]
   isLoading: boolean
   fetchProducts: () => Promise<void>
-  createProduct: (product: ProductFormValues) => Promise<void>
-  updateProduct: (productId: number, product: ProductFormValues) => Promise<void>
+  createProduct: (product: SaveProduct) => Promise<void>
+  updateProduct: (productId: number, product: SaveProduct) => Promise<void>
   deleteProduct: (productId: number) => Promise<void>
 }
 

@@ -2,6 +2,7 @@ import { PencilIcon, Trash2Icon } from 'lucide-react'
 import { useEffect, useState } from 'react'
 import { toast } from 'sonner'
 import { Button } from '@/components/ui/button'
+import { Skeleton } from '@/components/ui/skeleton'
 import {
   Table,
   TableBody,
@@ -66,11 +67,31 @@ export function ProductsTable() {
           </TableHeader>
           <TableBody>
             {isLoadingProducts ? (
-              <TableRow>
-                <TableCell colSpan={4} className="text-center py-6">
-                  Carregando...
-                </TableCell>
-              </TableRow>
+              Array.from({ length: 5 }).map((_, index) => (
+                <TableRow key={index}>
+                  <TableCell>
+                    <Skeleton className="h-4 w-12" />
+                  </TableCell>
+                  <TableCell>
+                    <Skeleton className="h-4 w-48" />
+                  </TableCell>
+                  <TableCell>
+                    <Skeleton className="h-4 w-24" />
+                  </TableCell>
+                  <TableCell>
+                    <div className="flex gap-2">
+                      <Skeleton className="h-6 w-20 rounded-full" />
+                      <Skeleton className="h-6 w-20 rounded-full" />
+                    </div>
+                  </TableCell>
+                  <TableCell className="text-right">
+                    <div className="flex justify-end gap-1">
+                      <Skeleton className="h-8 w-8" />
+                      <Skeleton className="h-8 w-8" />
+                    </div>
+                  </TableCell>
+                </TableRow>
+              ))
             ) : products.length === 0 ? (
               <TableRow>
                 <TableCell colSpan={4} className="text-center py-6">
@@ -86,7 +107,7 @@ export function ProductsTable() {
                   <TableCell>
                     {product.composition.map((c) => (
                       <span
-                        key={c.id as number}
+                        key={c.id}
                         className="inline-block bg-slate-100 rounded-full px-2 py-1 text-xs font-semibold text-slate-600 mr-2 mb-1"
                       >
                         {c.rawMaterial.name} ({c.quantityRequired}x)
@@ -107,7 +128,7 @@ export function ProductsTable() {
                         variant="ghost"
                         size="icon"
                         className="text-red-500 hover:text-red-700 hover:bg-red-50"
-                        onClick={() => handleDelete(product.id as number)}
+                        onClick={() => handleDelete(product.id)}
                       >
                         <Trash2Icon className="size-4" />
                       </Button>
