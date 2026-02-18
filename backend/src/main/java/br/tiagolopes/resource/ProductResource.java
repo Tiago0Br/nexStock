@@ -1,5 +1,7 @@
 package br.tiagolopes.resource;
 
+import br.tiagolopes.core.ErrorResponse;
+import br.tiagolopes.core.ErrorType;
 import br.tiagolopes.dto.ProductDTO;
 import br.tiagolopes.dto.ProductionPlanDTO;
 import br.tiagolopes.model.Product;
@@ -47,7 +49,9 @@ public class ProductResource {
         Product product = Product.findById(id);
 
         if (product == null) {
-            return Response.status(Response.Status.NOT_FOUND).build();
+            return Response.status(Response.Status.NOT_FOUND)
+                .entity(new ErrorResponse("Product Not Found", ErrorType.NOT_FOUND))
+                .build();
         }
 
         product.name = dto.name();
@@ -69,7 +73,9 @@ public class ProductResource {
             return Response.noContent().build();
         }
 
-        return Response.status(Response.Status.NOT_FOUND).build();
+        return Response.status(Response.Status.NOT_FOUND)
+            .entity(new ErrorResponse("Product Not Found", ErrorType.NOT_FOUND))
+            .build();
     }
 
     @GET
