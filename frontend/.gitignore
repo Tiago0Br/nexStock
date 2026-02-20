@@ -25,4 +25,4 @@ dist-ssr
 
 .env
 
-public/mock-service-worker.js
+public/mockServiceWorker.js

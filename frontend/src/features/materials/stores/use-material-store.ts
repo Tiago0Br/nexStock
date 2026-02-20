@@ -1,6 +1,10 @@
 import { toast } from 'sonner'
 import { create } from 'zustand'
-import { api, getErrorMessageByError } from '@/services/api'
+import { createMaterialRequest } from '@/http/create-material'
+import { deleteMaterialRequest } from '@/http/delete-material'
+import { getMaterialsRequest } from '@/http/get-material'
+import { updateMaterialRequest } from '@/http/update-material'
+import { getErrorMessageByError } from '@/services/api'
 import type { RawMaterial, SaveRawMaterial } from '@/types'
 
 interface MaterialStore {
@@ -19,8 +23,8 @@ export const useMaterialStore = create<MaterialStore>((set) => ({
   fetchMaterials: async () => {
     set({ isLoading: true })
     try {
-      const response = await api.get('/raw-materials')
-      set({ materials: response.data, isLoading: false })
+      const materials = await getMaterialsRequest()
+      set({ materials, isLoading: false })
     } catch (error) {
       set({ isLoading: false })
       toast.error(getErrorMessageByError(error))
@@ -29,7 +33,7 @@ export const useMaterialStore = create<MaterialStore>((set) => ({
 
   createMaterial: async (material) => {
     try {
-      await api.post('/raw-materials', material)
+      await createMaterialRequest({ material })
       useMaterialStore.getState().fetchMaterials()
       toast.success('Matéria-prima cadastrada com sucesso!')
     } catch (error) {
@@ -39,7 +43,7 @@ export const useMaterialStore = create<MaterialStore>((set) => ({
 
   updateMaterial: async (materialId, material) => {
     try {
-      await api.put(`/raw-materials/${materialId}`, material)
+      await updateMaterialRequest({ materialId, material })
       useMaterialStore.getState().fetchMaterials()
       toast.success('Matéria-prima atualizada com sucesso!')
     } catch (error) {
@@ -50,7 +54,7 @@ export const useMaterialStore = create<MaterialStore>((set) => ({
   deleteMaterial: async (materialId) => {
     set({ isLoading: true })
     try {
-      await api.delete(`/raw-materials/${materialId}`)
+      await deleteMaterialRequest({ materialId })
       set((state) => ({
         materials: state.materials.filter((material) => material.id !== materialId),
         isLoading: false
