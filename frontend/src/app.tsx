@@ -1,5 +1,6 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import { MainLayout } from './components/layout/main-layout'
+import { ThemeProvider } from './components/theme-provider'
 import { Toaster } from './components/ui/sonner'
 import { MaterialsPage } from './features/materials/pages'
 import { DashboardPage } from './features/production/pages'
@@ -33,9 +34,9 @@ export function App() {
   ])
 
   return (
-    <>
+    <ThemeProvider>
       <Toaster richColors closeButton position="top-center" />
       <RouterProvider router={router} />
-    </>
+    </ThemeProvider>
   )
 }
