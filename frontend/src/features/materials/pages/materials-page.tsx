@@ -1,9 +1,9 @@
 import { PlusIcon } from 'lucide-react'
 import { useEffect, useState } from 'react'
 import { Button } from '@/components/ui/button'
-import { MaterialFormDialog } from './components/material-form-dialog'
-import { MaterialsTable } from './components/materials-table'
-import { useMaterialStore } from './stores/use-material-store'
+import { MaterialFormDialog } from '../components/material-form-dialog'
+import { MaterialsTable } from '../components/materials-table'
+import { useMaterialStore } from '../stores/use-material-store'
 
 export function MaterialsPage() {
   const [isDialogOpen, setIsDialogOpen] = useState(false)

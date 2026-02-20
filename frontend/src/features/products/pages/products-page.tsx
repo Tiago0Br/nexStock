@@ -1,8 +1,8 @@
 import { PlusIcon } from 'lucide-react'
 import { useState } from 'react'
 import { Button } from '@/components/ui/button'
-import { ProductFormDialog } from './components/product-form-dialog'
-import { ProductsTable } from './components/products-table'
+import { ProductFormDialog } from '../components/product-form-dialog'
+import { ProductsTable } from '../components/products-table'
 
 export function ProductsPage() {
   const [isDialogOpen, setIsDialogOpen] = useState(false)

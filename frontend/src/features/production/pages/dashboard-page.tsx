@@ -1,10 +1,10 @@
 import { useEffect } from 'react'
 import { Skeleton } from '@/components/ui/skeleton'
-import { AlgorithmInfoCard } from './components/algorithm-info-card'
-import { ProductionPlanCard } from './components/production-plan-card'
-import { TotalItemsCard } from './components/total-items-card'
-import { TotalValueCard } from './components/total-value-card'
-import { useProductionStore } from './stores/use-production-store'
+import { AlgorithmInfoCard } from '../components/algorithm-info-card'
+import { ProductionPlanCard } from '../components/production-plan-card'
+import { TotalItemsCard } from '../components/total-items-card'
+import { TotalValueCard } from '../components/total-value-card'
+import { useProductionStore } from '../stores/use-production-store'
 
 export function DashboardPage() {
   const { plan, isLoading, fetchPlan } = useProductionStore()
