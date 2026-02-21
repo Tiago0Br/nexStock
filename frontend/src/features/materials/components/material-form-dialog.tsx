@@ -84,7 +84,7 @@ export function MaterialFormDialog({
 
   return (
     <Dialog open={isOpen} onOpenChange={onOpenChange}>
-      <DialogContent className="sm:max-w-106.25">
+      <DialogContent className="sm:max-w-106.25" data-cy="material-form-dialog">
         <DialogHeader>
           <DialogTitle>Matéria-prima</DialogTitle>
           <DialogDescription>
@@ -101,7 +101,11 @@ export function MaterialFormDialog({
                 <FormItem>
                   <FormLabel>Nome do Insumo</FormLabel>
                   <FormControl>
-                    <Input placeholder="Ex: Farinha de Trigo" {...field} />
+                    <Input
+                      placeholder="Ex: Farinha de Trigo"
+                      data-cy="material-name-input"
+                      {...field}
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -115,7 +119,12 @@ export function MaterialFormDialog({
                 <FormItem>
                   <FormLabel>Quantidade em Estoque</FormLabel>
                   <FormControl>
-                    <Input type="number" placeholder="Ex: 150" {...field} />
+                    <Input
+                      type="number"
+                      placeholder="Ex: 150"
+                      data-cy="material-stock-input"
+                      {...field}
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -130,11 +139,11 @@ export function MaterialFormDialog({
                   <FormLabel>Unidade de Medida</FormLabel>
                   <Select onValueChange={field.onChange} defaultValue={field.value}>
                     <FormControl>
-                      <SelectTrigger>
+                      <SelectTrigger data-cy="material-unit-select-button">
                         <SelectValue placeholder="Selecione a unidade" />
                       </SelectTrigger>
                     </FormControl>
-                    <SelectContent>
+                    <SelectContent data-cy="material-unit-select-options">
                       <SelectItem value="UN">Unidade (UN)</SelectItem>
                       <SelectItem value="KG">Quilograma (KG)</SelectItem>
                       <SelectItem value="G">Grama (G)</SelectItem>
@@ -151,7 +160,9 @@ export function MaterialFormDialog({
               <Button type="button" variant="outline" onClick={onOpenChange}>
                 Cancelar
               </Button>
-              <Button type="submit">{isEditing ? 'Atualizar' : 'Salvar'}</Button>
+              <Button type="submit" data-cy="material-form-submit">
+                {isEditing ? 'Atualizar' : 'Salvar'}
+              </Button>
             </div>
           </form>
         </Form>

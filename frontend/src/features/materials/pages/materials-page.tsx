@@ -21,7 +21,7 @@ export function MaterialsPage() {
           Matérias-Primas
         </h1>
 
-        <Button onClick={() => setIsDialogOpen(true)}>
+        <Button onClick={() => setIsDialogOpen(true)} data-cy="material-new">
           <PlusIcon className="mr-2 size-4" />
           Nova Matéria-prima
         </Button>

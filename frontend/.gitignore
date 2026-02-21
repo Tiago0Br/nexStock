@@ -23,6 +23,11 @@ dist-ssr
 *.sln
 *.sw?
 
+# Environment variables
 .env
 
+# HTTP Mocks
 public/mockServiceWorker.js
+
+# Cypress logs
+cypress/screenshots

@@ -9,8 +9,20 @@ export const getMaterialMock = http.get<never, never, RawMaterial[]>(
       {
         id: 1,
         name: 'Farinha de trigo',
-        stockQuantity: 100,
-        unit: 'KG'
+        stockQuantity: 300,
+        unit: 'G'
+      },
+      {
+        id: 2,
+        name: 'Ovo',
+        stockQuantity: 30,
+        unit: 'UN'
+      },
+      {
+        id: 3,
+        name: 'Barra de chocolate',
+        stockQuantity: 10,
+        unit: 'UN'
       }
     ])
   }

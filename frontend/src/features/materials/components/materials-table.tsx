@@ -83,10 +83,12 @@ export function MaterialsTable() {
               </TableRow>
             ) : (
               materials.map((material) => (
-                <TableRow key={material.id}>
-                  <TableCell className="font-medium">{material.id}</TableCell>
-                  <TableCell>{material.name}</TableCell>
-                  <TableCell className="text-right">
+                <TableRow key={material.id} data-cy="material-item">
+                  <TableCell className="font-medium" data-cy="material-id">
+                    {material.id}
+                  </TableCell>
+                  <TableCell data-cy="material-name">{material.name}</TableCell>
+                  <TableCell className="text-right" data-cy="material-stock">
                     {material.stockQuantity} ({material.unit})
                   </TableCell>
                   <TableCell className="text-right">
@@ -96,6 +98,7 @@ export function MaterialsTable() {
                         size="icon"
                         className="text-blue-500 hover:text-blue-700 hover:bg-blue-50"
                         onClick={() => handleEdit(material)}
+                        data-cy="material-edit"
                       >
                         <PencilIcon className="size-4" />
                       </Button>
@@ -104,6 +107,7 @@ export function MaterialsTable() {
                         size="icon"
                         className="text-red-500 hover:text-red-700 hover:bg-red-50"
                         onClick={() => handleDelete(material.id)}
+                        data-cy="material-delete"
                       >
                         <Trash2Icon className="size-4" />
                       </Button>
