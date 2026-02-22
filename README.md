@@ -30,6 +30,7 @@ A fullstack web application for inventory and production planning control, devel
       - [3. Start the frontend](#3-start-the-frontend)
   - [Environment Variables](#environment-variables)
     - [Backend](#backend-1)
+    - [Frontend](#frontend-1)
   - [Testing](#testing)
     - [Backend Tests](#backend-tests)
     - [Frontend Tests (E2E)](#frontend-tests-e2e)
@@ -277,6 +278,12 @@ The application will be available at `http://localhost:5173`.
 | `DB_PASSWORD` | PostgreSQL password | `docker` |
 | `DB_URL` | JDBC connection URL | `jdbc:postgresql://localhost:5432/stock_db` |
 | `FRONTEND_URL` | Allowed CORS origin | `http://localhost:5173` |
+
+### Frontend
+
+| Variable | Description | Example |
+|---|---|---|
+| `VITE_API_URL` | API URL | `http://localhost:8080` |
 
 ---
 
