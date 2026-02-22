@@ -97,7 +97,10 @@ export function ProductFormDialog({
 
   return (
     <Dialog open={isOpen} onOpenChange={onOpenChange}>
-      <DialogContent className="sm:max-w-137.5 max-h-[90vh] overflow-y-auto">
+      <DialogContent
+        className="sm:max-w-137.5 max-h-[90vh] overflow-y-auto"
+        data-cy="product-form-dialog"
+      >
         <DialogHeader>
           <DialogTitle>Produto</DialogTitle>
           <DialogDescription>
@@ -115,7 +118,11 @@ export function ProductFormDialog({
                   <FormItem>
                     <FormLabel>Nome do Produto</FormLabel>
                     <FormControl>
-                      <Input placeholder="Ex: Bolo de Cenoura" {...field} />
+                      <Input
+                        placeholder="Ex: Bolo de Cenoura"
+                        data-cy="product-name-input"
+                        {...field}
+                      />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -132,6 +139,7 @@ export function ProductFormDialog({
                         type="number"
                         step="0.01"
                         placeholder="Ex: 25.50"
+                        data-cy="product-price-input"
                         {...field}
                       />
                     </FormControl>
@@ -149,6 +157,7 @@ export function ProductFormDialog({
                   variant="outline"
                   size="sm"
                   onClick={() => append({ rawMaterialId: 0, quantityRequired: 0 })}
+                  data-cy="product-add-material"
                 >
                   <PlusIcon className="mr-2 size-4" /> Adicionar Ingrediente
                 </Button>
@@ -170,11 +179,11 @@ export function ProductFormDialog({
                           defaultValue={field.value?.toString()}
                         >
                           <FormControl>
-                            <SelectTrigger>
+                            <SelectTrigger data-cy="product-material-select-button">
                               <SelectValue placeholder="Selecione o insumo" />
                             </SelectTrigger>
                           </FormControl>
-                          <SelectContent>
+                          <SelectContent data-cy="product-material-select-options">
                             {materials.map((m) => (
                               <SelectItem key={m.id} value={m.id.toString()}>
                                 {m.name} (Estoque: {m.stockQuantity} {m.unit})
@@ -194,7 +203,11 @@ export function ProductFormDialog({
                       <FormItem className="w-32">
                         <FormLabel>Qtd. Necessária</FormLabel>
                         <FormControl>
-                          <Input type="number" {...field} />
+                          <Input
+                            type="number"
+                            data-cy="product-material-quantity"
+                            {...field}
+                          />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -206,6 +219,7 @@ export function ProductFormDialog({
                     variant="ghost"
                     size="icon"
                     className="text-red-500 hover:text-red-700 hover:bg-red-50 mb-0.5"
+                    data-cy="product-material-remove-button"
                     onClick={() => remove(index)}
                   >
                     <Trash2Icon className="size-5" />
@@ -224,7 +238,9 @@ export function ProductFormDialog({
               <Button type="button" variant="outline" onClick={onOpenChange}>
                 Cancelar
               </Button>
-              <Button type="submit">{isEditing ? 'Atualizar' : 'Salvar'}</Button>
+              <Button type="submit" data-cy="product-form-submit">
+                {isEditing ? 'Atualizar' : 'Salvar'}
+              </Button>
             </div>
           </form>
         </Form>

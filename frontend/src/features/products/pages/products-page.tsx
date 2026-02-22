@@ -12,7 +12,7 @@ export function ProductsPage() {
       <div className="flex justify-between items-center">
         <h1 className="text-3xl font-bold tracking-tight text-foreground">Produtos</h1>
 
-        <Button onClick={() => setIsDialogOpen(true)}>
+        <Button onClick={() => setIsDialogOpen(true)} data-cy="product-new">
           <PlusIcon className="mr-2 size-4" />
           Novo Produto
         </Button>

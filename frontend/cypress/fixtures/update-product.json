@@ -1,0 +1,13 @@
+{
+  "name": "Ovo de chocolate",
+  "data": {
+    "name": "Ovo cozido (sem chocolate D:)",
+    "price": 2.99,
+    "composition": [
+      {
+        "name": "Ovo",
+        "quantityRequired": 1
+      }
+    ]
+  }
+}
