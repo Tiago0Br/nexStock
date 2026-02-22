@@ -1,9 +1,9 @@
 import { HttpResponse, http } from 'msw'
-import { env } from '@/env'
 import type { RawMaterial } from '@/types'
+import { getFullUrl } from '@/utils/get-full-url'
 
 export const getAllMaterialsMock = http.get<never, never, RawMaterial[]>(
-  `${env.VITE_API_URL}/raw-materials`,
+  getFullUrl('/raw-materials'),
   async () => {
     return HttpResponse.json([
       {

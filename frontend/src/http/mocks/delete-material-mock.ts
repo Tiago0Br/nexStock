@@ -1,8 +1,8 @@
 import { HttpResponse, http } from 'msw'
-import { env } from '@/env'
+import { getFullUrl } from '@/utils/get-full-url'
 
 export const deleteMaterialMock = http.delete(
-  `${env.VITE_API_URL}/raw-materials/:materialId`,
+  getFullUrl('/raw-materials/:materialId'),
   () => {
     return new HttpResponse(null, { status: 204 })
   }

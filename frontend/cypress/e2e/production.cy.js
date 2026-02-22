@@ -8,7 +8,7 @@ describe('Production (E2E)', () => {
   })
 
   it('Should display production information on the dashboard.', () => {
-    cy.fixture('production-plan').then((plan) => {
+    cy.fixture('production/plan').then((plan) => {
       cy.get('[data-cy="total-value"]')
         .should('be.visible')
         .and('have.text', formatCurrency(plan.totalValue))

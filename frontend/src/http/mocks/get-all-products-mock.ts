@@ -1,9 +1,9 @@
 import { HttpResponse, http } from 'msw'
-import { env } from '@/env'
 import type { Product } from '@/types'
+import { getFullUrl } from '@/utils/get-full-url'
 
 export const getAllProductsMock = http.get<never, never, Product[]>(
-  `${env.VITE_API_URL}/products`,
+  getFullUrl('/products'),
   async () => {
     return HttpResponse.json([
       {

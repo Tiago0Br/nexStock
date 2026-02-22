@@ -6,7 +6,7 @@ describe('Raw Materials (E2E)', () => {
   })
 
   it('Should list all the registered raw materials', () => {
-    cy.fixture('raw-materials').then((materials) => {
+    cy.fixture('raw-materials/raw-materials-list').then((materials) => {
       cy.get('[data-cy="material-item"]').should('have.length', materials.length)
       cy.get('[data-cy="material-item"]').each((element, i) => {
         cy.wrap(element).within(() => {
@@ -24,7 +24,7 @@ describe('Raw Materials (E2E)', () => {
   })
 
   it('Should register a new raw material', () => {
-    cy.fixture('register-raw-material').then((material) => {
+    cy.fixture('raw-materials/register-raw-material').then((material) => {
       cy.get('[data-cy="material-new"]').should('be.visible').click()
       cy.get('[data-cy="material-form-dialog"]').should('be.visible')
 
@@ -44,7 +44,7 @@ describe('Raw Materials (E2E)', () => {
   })
 
   it('Should update a raw material', () => {
-    cy.fixture('update-raw-material').then((material) => {
+    cy.fixture('raw-materials/update-raw-material').then((material) => {
       cy.contains('[data-cy="material-name"]', material.name)
         .parent()
         .find('[data-cy="material-edit"]')
@@ -67,7 +67,7 @@ describe('Raw Materials (E2E)', () => {
   })
 
   it('Should delete a raw material', () => {
-    cy.fixture('delete-raw-material').then((material) => {
+    cy.fixture('raw-materials/delete-raw-material').then((material) => {
       cy.contains('[data-cy="material-name"]', material.name)
         .parent()
         .find('[data-cy="material-delete"]')

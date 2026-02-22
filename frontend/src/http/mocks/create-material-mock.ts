@@ -1,6 +1,6 @@
 import { HttpResponse, http } from 'msw'
-import { env } from '@/env'
+import { getFullUrl } from '@/utils/get-full-url'
 
-export const createMaterialMock = http.post(`${env.VITE_API_URL}/raw-materials`, () => {
+export const createMaterialMock = http.post(getFullUrl('/raw-materials'), () => {
   return new HttpResponse(null, { status: 201 })
 })

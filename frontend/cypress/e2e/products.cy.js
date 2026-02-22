@@ -8,7 +8,7 @@ describe('Products (E2E)', () => {
   })
 
   it('Should list all the registered products', () => {
-    cy.fixture('products').then((products) => {
+    cy.fixture('products/products-list').then((products) => {
       cy.get('[data-cy="product-item"]').should('have.length', products.length)
       cy.get('[data-cy="product-item"]').each((element, i) => {
         cy.wrap(element).within(() => {
@@ -36,7 +36,7 @@ describe('Products (E2E)', () => {
   })
 
   it('Should register a new product', () => {
-    cy.fixture('register-product').then((product) => {
+    cy.fixture('products/register-product').then((product) => {
       cy.get('[data-cy="product-new"]').click()
       cy.get('[data-cy="product-form-dialog"]').should('be.visible')
 
@@ -63,7 +63,7 @@ describe('Products (E2E)', () => {
   })
 
   it('Should update a product', () => {
-    cy.fixture('update-product').then((product) => {
+    cy.fixture('products/update-product').then((product) => {
       cy.contains('[data-cy="product-name"]', product.name)
         .parent()
         .find('[data-cy="product-edit"]')
@@ -96,7 +96,7 @@ describe('Products (E2E)', () => {
   })
 
   it('Should delete a product', () => {
-    cy.fixture('delete-product').then((product) => {
+    cy.fixture('products/delete-product').then((product) => {
       cy.contains('[data-cy="product-name"]', product.name)
         .parent()
         .find('[data-cy="product-delete"]')

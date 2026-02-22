@@ -31,3 +31,4 @@ public/mockServiceWorker.js
 
 # Cypress logs
 cypress/screenshots
+cypress/videos
