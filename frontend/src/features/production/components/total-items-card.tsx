@@ -15,7 +15,9 @@ export function TotalItemsCard({ totalItems }: TotalItemsCardProps) {
         <PackageIcon className="size-4 text-muted-foreground" />
       </CardHeader>
       <CardContent>
-        <div className="text-3xl font-bold text-foreground">{totalItems ?? 0}</div>
+        <div className="text-3xl font-bold text-foreground" data-cy="total-items">
+          {totalItems ?? 0}
+        </div>
         <p className="text-xs text-muted-foreground mt-1">Unidades prontas para venda</p>
       </CardContent>
     </Card>

@@ -55,19 +55,31 @@ export function ProductionPlanCard({ productionList }: ProductionPlanCardProps) 
               </TableRow>
             ) : (
               productionList.map((item) => (
-                <TableRow key={item.productName}>
-                  <TableCell className="font-medium text-foreground">
+                <TableRow key={item.productName} data-cy="production-plan-item">
+                  <TableCell
+                    className="font-medium text-foreground"
+                    data-cy="production-plan-product-name"
+                  >
                     {item.productName}
                   </TableCell>
                   <TableCell className="text-center">
-                    <span className="bg-secondary text-secondary-foreground px-3 py-1 rounded-full text-xs font-bold">
+                    <span
+                      className="bg-secondary text-secondary-foreground px-3 py-1 rounded-full text-xs font-bold"
+                      data-cy="production-plan-product-quantity"
+                    >
                       {item.quantityToProduce} unidades
                     </span>
                   </TableCell>
-                  <TableCell className="text-right text-muted-foreground">
+                  <TableCell
+                    className="text-right text-muted-foreground"
+                    data-cy="production-plan-product-price"
+                  >
                     {formatCurrency(item.unitPrice)}
                   </TableCell>
-                  <TableCell className="text-right font-bold text-primary">
+                  <TableCell
+                    className="text-right font-bold text-primary"
+                    data-cy="production-plan-product-subtotal"
+                  >
                     {formatCurrency(item.subTotal)}
                   </TableCell>
                 </TableRow>

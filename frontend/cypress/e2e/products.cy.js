@@ -11,18 +11,16 @@ describe('Products (E2E)', () => {
     cy.fixture('products').then((products) => {
       cy.get('[data-cy="product-item"]').should('have.length', products.length)
       cy.get('[data-cy="product-item"]').each((element, i) => {
-        cy.wrap(element)
-          .should('be.visible')
-          .find('[data-cy="product-id"]')
-          .should('have.text', products[i].id)
+        cy.wrap(element).within(() => {
+          cy.get('[data-cy="product-id"]').should('have.text', products[i].id)
 
-        cy.wrap(element)
-          .find('[data-cy="product-name"]')
-          .should('have.text', products[i].name)
+          cy.get('[data-cy="product-name"]').should('have.text', products[i].name)
 
-        cy.wrap(element)
-          .find('[data-cy="product-price"]')
-          .should('have.text', `${formatCurrency(products[i].price)}`)
+          cy.get('[data-cy="product-price"]').should(
+            'have.text',
+            `${formatCurrency(products[i].price)}`
+          )
+        })
 
         products[i].composition.forEach((composition, pos) => {
           cy.wrap(element)

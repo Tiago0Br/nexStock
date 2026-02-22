@@ -16,7 +16,7 @@ export function TotalValueCard({ totalValue }: TotalValueCardProps) {
         <DollarSignIcon className="size-4 text-primary" />
       </CardHeader>
       <CardContent>
-        <div className="text-3xl font-bold text-foreground">
+        <div className="text-3xl font-bold text-foreground" data-cy="total-value">
           {totalValue ? formatCurrency(totalValue) : 'R$ 0,00'}
         </div>
         <p className="text-xs text-primary mt-1">Priorizando produtos de maior valor</p>

@@ -9,18 +9,16 @@ describe('Raw Materials (E2E)', () => {
     cy.fixture('raw-materials').then((materials) => {
       cy.get('[data-cy="material-item"]').should('have.length', materials.length)
       cy.get('[data-cy="material-item"]').each((element, i) => {
-        cy.wrap(element)
-          .should('be.visible')
-          .find('[data-cy="material-id"]')
-          .should('have.text', materials[i].id)
+        cy.wrap(element).within(() => {
+          cy.get('[data-cy="material-id"]').should('have.text', materials[i].id)
 
-        cy.wrap(element)
-          .find('[data-cy="material-name"]')
-          .should('have.text', materials[i].name)
+          cy.get('[data-cy="material-name"]').should('have.text', materials[i].name)
 
-        cy.wrap(element)
-          .find('[data-cy="material-stock"]')
-          .should('have.text', `${materials[i].stockQuantity} (${materials[i].unit})`)
+          cy.get('[data-cy="material-stock"]').should(
+            'have.text',
+            `${materials[i].stockQuantity} (${materials[i].unit})`
+          )
+        })
       })
     })
   })
