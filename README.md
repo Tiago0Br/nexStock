@@ -2,6 +2,8 @@
 
 A fullstack web application for inventory and production planning control, developed as a code challenge for the Projedata Informática selection process.
 
+Production URL: https://nex-stock.vercel.app/
+
 ---
 
 ## Table of Contents

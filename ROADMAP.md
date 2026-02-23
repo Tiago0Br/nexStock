@@ -102,7 +102,7 @@ Visualise the output of the system's intelligence.
     - [X] Error handling (e.g. trying to create a product without a name).
     - [X] Check responsiveness (smaller screens).
 - [X] **Tests (Desired)**
-    - [ ] Write component tests (Vitest or Jest)
+    - [X] Write component tests (Vitest or Jest)
     - [X] Write E2E tests (Cypress)
 
 ---
@@ -119,7 +119,7 @@ The final polish that seals the deal.
     - [X] Verify that all variable names are in English.
 - [X] **Build & Deploy (Optional)**
     - [X] Generate React production build (`npm run build`).
-    - [ ] (Optional) Deploy to Render/Railway/Vercel.
+    - [X] (Optional) Deploy to Render/Railway/Vercel.
 - [X] **Delivery**
     - [X] Push to GitHub.
 
