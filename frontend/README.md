@@ -13,6 +13,7 @@ React + TypeScript web application for the NexStock inventory management system.
 - **React Hook Form** + **Zod** (form handling & validation)
 - **Axios** (HTTP client)
 - **React Router Dom 7** (routing)
+- **Vitest 4** + **React testing library** (Component testing)
 - **Cypress 15** + **MSW 2** (E2E testing with API mocking)
 - **Biome** (linter & formatter)
 
@@ -68,6 +69,8 @@ The application will be available at `http://localhost:5173`.
 | `pnpm preview` | Preview the production build |
 | `pnpm lint` | Lint and auto-fix with Biome |
 | `pnpm format` | Format code with Biome |
+| `pnpm test` | Run unit tests |
+| `pnpm test:watch` | Run unit tests on watch mode |
 | `pnpm test:e2e` | Run E2E tests headlessly (starts dev server automatically) |
 | `pnpm test:e2e:open` | Open Cypress interactive runner |
 

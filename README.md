@@ -33,7 +33,9 @@ A fullstack web application for inventory and production planning control, devel
     - [Frontend](#frontend-1)
   - [Testing](#testing)
     - [Backend Tests](#backend-tests)
-    - [Frontend Tests (E2E)](#frontend-tests-e2e)
+    - [Frontend Tests](#frontend-tests)
+      - [Unit tests](#unit-tests)
+      - [E2E tests](#e2e-tests)
 
 ---
 
@@ -73,6 +75,7 @@ NexStock is a fullstack stock management system that allows users to manage raw 
 | React Hook Form + Zod | — | Form handling and validation |
 | Axios | — | HTTP client |
 | React Router Dom | 7 | Client-side routing |
+| Vitest | 4 | Unit testing |
 | Cypress | 15 | End-to-end testing |
 | MSW (Mock Service Worker) | 2 | API mocking for tests |
 | Biome | 2 | Linter and code formatter |
@@ -302,7 +305,25 @@ Test reports are generated in `backend/target/surefire-reports/`.
 
 ---
 
-### Frontend Tests (E2E)
+### Frontend Tests
+
+#### Unit tests
+
+The frontend uses **Vitest** + **React testing library** for component tests.
+
+Run tests:
+```bash
+cd frontend
+pnpm test
+```
+
+Run tests on watch mode:
+```bash
+cd frontend
+pnpm test:watch
+```
+
+#### E2E tests
 
 The frontend uses **Cypress** for end-to-end tests. HTTP requests are intercepted and mocked using **MSW (Mock Service Worker)**, so no running backend is required.
 
