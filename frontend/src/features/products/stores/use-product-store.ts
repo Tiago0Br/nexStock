@@ -10,6 +10,7 @@ import type { Product, SaveProduct } from '@/types'
 interface ProductStore {
   products: Product[]
   isLoading: boolean
+  isSaving: boolean
   fetchProducts: () => Promise<void>
   createProduct: (product: SaveProduct) => Promise<void>
   updateProduct: (productId: number, product: SaveProduct) => Promise<void>
@@ -19,6 +20,7 @@ interface ProductStore {
 export const useProductStore = create<ProductStore>((set) => ({
   products: [],
   isLoading: false,
+  isSaving: false,
 
   fetchProducts: async () => {
     set({ isLoading: true })
@@ -32,21 +34,27 @@ export const useProductStore = create<ProductStore>((set) => ({
   },
 
   createProduct: async (product) => {
+    set({ isSaving: true })
     try {
       await createProductRequest({ product })
+      set({ isSaving: false })
       useProductStore.getState().fetchProducts()
       toast.success('Produto cadastrado com sucesso!')
     } catch (error) {
+      set({ isSaving: false })
       toast.error(getErrorMessageByError(error))
     }
   },
 
   updateProduct: async (productId, product) => {
+    set({ isSaving: true })
     try {
       await updateProductRequest({ product, productId })
+      set({ isSaving: false })
       useProductStore.getState().fetchProducts()
       toast.success('Produto atualizado com sucesso!')
     } catch (error) {
+      set({ isSaving: false })
       toast.error(getErrorMessageByError(error))
     }
   },

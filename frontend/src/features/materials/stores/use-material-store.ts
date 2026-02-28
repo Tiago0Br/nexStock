@@ -10,6 +10,7 @@ import type { RawMaterial, SaveRawMaterial } from '@/types'
 interface MaterialStore {
   materials: RawMaterial[]
   isLoading: boolean
+  isSaving: boolean
   fetchMaterials: () => Promise<void>
   createMaterial: (material: SaveRawMaterial) => Promise<void>
   updateMaterial: (materialId: number, material: SaveRawMaterial) => Promise<void>
@@ -19,6 +20,7 @@ interface MaterialStore {
 export const useMaterialStore = create<MaterialStore>((set) => ({
   materials: [],
   isLoading: false,
+  isSaving: false,
 
   fetchMaterials: async () => {
     set({ isLoading: true })
@@ -32,21 +34,27 @@ export const useMaterialStore = create<MaterialStore>((set) => ({
   },
 
   createMaterial: async (material) => {
+    set({ isSaving: true })
     try {
       await createMaterialRequest({ material })
+      set({ isSaving: false })
       useMaterialStore.getState().fetchMaterials()
       toast.success('Matéria-prima cadastrada com sucesso!')
     } catch (error) {
+      set({ isSaving: false })
       toast.error(getErrorMessageByError(error))
     }
   },
 
   updateMaterial: async (materialId, material) => {
+    set({ isSaving: true })
     try {
       await updateMaterialRequest({ materialId, material })
+      set({ isSaving: false })
       useMaterialStore.getState().fetchMaterials()
       toast.success('Matéria-prima atualizada com sucesso!')
     } catch (error) {
+      set({ isSaving: false })
       toast.error(getErrorMessageByError(error))
     }
   },

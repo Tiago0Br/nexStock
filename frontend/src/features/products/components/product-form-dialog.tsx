@@ -42,7 +42,7 @@ export function ProductFormDialog({
   onOpenChange,
   product
 }: ProductFormDialogProps) {
-  const { createProduct, updateProduct } = useProductStore()
+  const { createProduct, updateProduct, isSaving: isSavingProduct } = useProductStore()
   const { fetchMaterials, materials } = useMaterialStore()
 
   const isEditing = !!product
@@ -120,6 +120,7 @@ export function ProductFormDialog({
                     <FormControl>
                       <Input
                         placeholder="Ex: Bolo de Cenoura"
+                        disabled={isSavingProduct}
                         data-cy="product-name-input"
                         {...field}
                       />
@@ -139,6 +140,7 @@ export function ProductFormDialog({
                         type="number"
                         step="0.01"
                         placeholder="Ex: 25.50"
+                        disabled={isSavingProduct}
                         data-cy="product-price-input"
                         {...field}
                       />
@@ -157,6 +159,7 @@ export function ProductFormDialog({
                   variant="outline"
                   size="sm"
                   onClick={() => append({ rawMaterialId: 0, quantityRequired: 0 })}
+                  disabled={isSavingProduct}
                   data-cy="product-add-material"
                 >
                   <PlusIcon className="mr-2 size-4" /> Adicionar Ingrediente
@@ -177,6 +180,7 @@ export function ProductFormDialog({
                         <Select
                           onValueChange={field.onChange}
                           defaultValue={field.value?.toString()}
+                          disabled={isSavingProduct}
                         >
                           <FormControl>
                             <SelectTrigger data-cy="product-material-select-button">
@@ -206,6 +210,7 @@ export function ProductFormDialog({
                           <Input
                             type="number"
                             data-cy="product-material-quantity"
+                            disabled={isSavingProduct}
                             {...field}
                           />
                         </FormControl>
@@ -219,6 +224,7 @@ export function ProductFormDialog({
                     variant="ghost"
                     size="icon"
                     className="text-red-500 hover:text-red-700 hover:bg-red-50 mb-0.5"
+                    disabled={isSavingProduct}
                     data-cy="product-material-remove-button"
                     onClick={() => remove(index)}
                   >
@@ -235,10 +241,19 @@ export function ProductFormDialog({
             </div>
 
             <div className="flex justify-end space-x-2 pt-4 border-t">
-              <Button type="button" variant="outline" onClick={onOpenChange}>
+              <Button
+                type="button"
+                variant="outline"
+                onClick={onOpenChange}
+                disabled={isSavingProduct}
+              >
                 Cancelar
               </Button>
-              <Button type="submit" data-cy="product-form-submit">
+              <Button
+                type="submit"
+                data-cy="product-form-submit"
+                disabled={isSavingProduct}
+              >
                 {isEditing ? 'Atualizar' : 'Salvar'}
               </Button>
             </div>

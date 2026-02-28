@@ -42,7 +42,11 @@ export function MaterialFormDialog({
 }: MaterialFormDialogProps) {
   const isEditing = !!material
 
-  const { createMaterial, updateMaterial } = useMaterialStore()
+  const {
+    createMaterial,
+    updateMaterial,
+    isSaving: isSavingMaterial
+  } = useMaterialStore()
 
   const form = useForm<MaterialFormValues>({
     resolver: zodResolver(materialFormSchema),
@@ -104,6 +108,7 @@ export function MaterialFormDialog({
                     <Input
                       placeholder="Ex: Farinha de Trigo"
                       data-cy="material-name-input"
+                      disabled={isSavingMaterial}
                       {...field}
                     />
                   </FormControl>
@@ -123,6 +128,7 @@ export function MaterialFormDialog({
                       type="number"
                       placeholder="Ex: 150"
                       data-cy="material-stock-input"
+                      disabled={isSavingMaterial}
                       {...field}
                     />
                   </FormControl>
@@ -137,7 +143,11 @@ export function MaterialFormDialog({
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>Unidade de Medida</FormLabel>
-                  <Select onValueChange={field.onChange} defaultValue={field.value}>
+                  <Select
+                    onValueChange={field.onChange}
+                    defaultValue={field.value}
+                    disabled={isSavingMaterial}
+                  >
                     <FormControl>
                       <SelectTrigger data-cy="material-unit-select-button">
                         <SelectValue placeholder="Selecione a unidade" />
@@ -157,10 +167,19 @@ export function MaterialFormDialog({
             />
 
             <div className="flex justify-end space-x-2 pt-4">
-              <Button type="button" variant="outline" onClick={onOpenChange}>
+              <Button
+                type="button"
+                variant="outline"
+                onClick={onOpenChange}
+                disabled={isSavingMaterial}
+              >
                 Cancelar
               </Button>
-              <Button type="submit" data-cy="material-form-submit">
+              <Button
+                type="submit"
+                data-cy="material-form-submit"
+                disabled={isSavingMaterial}
+              >
                 {isEditing ? 'Atualizar' : 'Salvar'}
               </Button>
             </div>
