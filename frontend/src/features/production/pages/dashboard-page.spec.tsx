@@ -66,4 +66,17 @@ describe('Dashboard Page', () => {
 
     expect(wrapper.getByText(/Estoque insuficiente para produzir/i)).toBeInTheDocument()
   })
+
+  it('Should call fetchPlan on mount.', () => {
+    const fetchPlan = vi.fn()
+    vi.mocked(useProductionStore).mockReturnValue({
+      plan: null,
+      isLoading: true,
+      fetchPlan
+    })
+
+    render(<DashboardPage />)
+
+    expect(fetchPlan).toHaveBeenCalledOnce()
+  })
 })
