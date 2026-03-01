@@ -1,5 +1,6 @@
 import { PencilIcon, Trash2Icon } from 'lucide-react'
 import { useState } from 'react'
+import { DeleteItemDialog } from '@/components/shared/delete-item-dialog'
 import { Button } from '@/components/ui/button'
 import { Skeleton } from '@/components/ui/skeleton'
 import {
@@ -21,6 +22,7 @@ export function MaterialsTable() {
   const [selectedMaterial, setSelectedMaterial] = useState<RawMaterial | undefined>(
     undefined
   )
+  const [materialToDelete, setMaterialToDelete] = useState<number | null>(null)
 
   function handleEdit(material: RawMaterial) {
     setSelectedMaterial(material)
@@ -32,8 +34,18 @@ export function MaterialsTable() {
     setSelectedMaterial(undefined)
   }
 
-  async function handleDelete(materialId: number) {
-    await deleteMaterial(materialId)
+  function handleDeleteRequest(materialId: number) {
+    setMaterialToDelete(materialId)
+  }
+
+  function handleCancelDelete() {
+    setMaterialToDelete(null)
+  }
+
+  async function handleConfirmDelete() {
+    if (materialToDelete === null) return
+    await deleteMaterial(materialToDelete)
+    setMaterialToDelete(null)
   }
 
   return (
@@ -42,6 +54,13 @@ export function MaterialsTable() {
         isOpen={isDialogOpen}
         onOpenChange={handleCloseDialog}
         material={selectedMaterial}
+      />
+
+      <DeleteItemDialog
+        open={materialToDelete !== null}
+        onOpenChange={handleCancelDelete}
+        handleCancelDelete={handleCancelDelete}
+        handleConfirmDelete={handleConfirmDelete}
       />
 
       <div className="border rounded-lg shadow-sm">
@@ -106,7 +125,7 @@ export function MaterialsTable() {
                         variant="ghost"
                         size="icon"
                         className="text-red-500 hover:text-red-700 hover:bg-red-50"
-                        onClick={() => handleDelete(material.id)}
+                        onClick={() => handleDeleteRequest(material.id)}
                         data-cy="material-delete"
                       >
                         <Trash2Icon className="size-4" />

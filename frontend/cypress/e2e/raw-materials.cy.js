@@ -73,6 +73,8 @@ describe('Raw Materials (E2E)', () => {
         .find('[data-cy="material-delete"]')
         .click()
 
+      cy.get('[data-cy="item-delete-confirm"]').should('be.visible').click()
+
       cy.get('[data-sonner-toaster]')
         .should('be.visible')
         .and('include.text', 'Matéria-prima deletada!')

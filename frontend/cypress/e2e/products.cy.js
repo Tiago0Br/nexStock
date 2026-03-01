@@ -102,6 +102,8 @@ describe('Products (E2E)', () => {
         .find('[data-cy="product-delete"]')
         .click()
 
+      cy.get('[data-cy="item-delete-confirm"]').should('be.visible').click()
+
       cy.get('[data-sonner-toaster]')
         .should('be.visible')
         .and('include.text', 'Produto deletado!')

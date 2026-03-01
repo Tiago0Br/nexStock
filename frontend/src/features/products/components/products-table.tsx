@@ -1,5 +1,6 @@
 import { PencilIcon, Trash2Icon } from 'lucide-react'
 import { useEffect, useState } from 'react'
+import { DeleteItemDialog } from '@/components/shared/delete-item-dialog'
 import { Button } from '@/components/ui/button'
 import { Skeleton } from '@/components/ui/skeleton'
 import {
@@ -25,6 +26,7 @@ export function ProductsTable() {
 
   const [isDialogOpen, setIsDialogOpen] = useState(false)
   const [selectedProduct, setSelectedProduct] = useState<Product | undefined>(undefined)
+  const [productToDelete, setProductToDelete] = useState<number | null>(null)
 
   useEffect(() => {
     fetchProducts()
@@ -40,8 +42,18 @@ export function ProductsTable() {
     setSelectedProduct(undefined)
   }
 
-  async function handleDelete(productId: number) {
-    await deleteProduct(productId)
+  function handleDeleteRequest(productId: number) {
+    setProductToDelete(productId)
+  }
+
+  function handleCancelDelete() {
+    setProductToDelete(null)
+  }
+
+  async function handleConfirmDelete() {
+    if (productToDelete === null) return
+    await deleteProduct(productToDelete)
+    setProductToDelete(null)
   }
 
   return (
@@ -50,6 +62,13 @@ export function ProductsTable() {
         isOpen={isDialogOpen}
         onOpenChange={handleCloseDialog}
         product={selectedProduct}
+      />
+
+      <DeleteItemDialog
+        open={productToDelete !== null}
+        onOpenChange={handleCancelDelete}
+        handleCancelDelete={handleCancelDelete}
+        handleConfirmDelete={handleConfirmDelete}
       />
 
       <div className="border rounded-lg shadow-sm">
@@ -132,7 +151,7 @@ export function ProductsTable() {
                         variant="ghost"
                         size="icon"
                         className="text-red-500 hover:text-red-700 hover:bg-red-50"
-                        onClick={() => handleDelete(product.id)}
+                        onClick={() => handleDeleteRequest(product.id)}
                         data-cy="product-delete"
                       >
                         <Trash2Icon className="size-4" />
