@@ -59,8 +59,8 @@ export function MaterialsTable() {
       <DeleteItemDialog
         open={materialToDelete !== null}
         onOpenChange={handleCancelDelete}
-        handleCancelDelete={handleCancelDelete}
-        handleConfirmDelete={handleConfirmDelete}
+        onConfirm={handleConfirmDelete}
+        isDeleting={isLoading}
       />
 
       <div className="border rounded-lg shadow-sm">

@@ -10,16 +10,16 @@ import {
 
 interface DeleteItemDialogProps {
   open: boolean
-  onOpenChange: () => void
-  handleCancelDelete: () => void
-  handleConfirmDelete: () => void
+  onOpenChange: (open: boolean) => void
+  onConfirm: () => void
+  isDeleting: boolean
 }
 
 export function DeleteItemDialog({
   open,
   onOpenChange,
-  handleCancelDelete,
-  handleConfirmDelete
+  onConfirm,
+  isDeleting
 }: DeleteItemDialogProps) {
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
@@ -31,13 +31,18 @@ export function DeleteItemDialog({
           </DialogDescription>
         </DialogHeader>
         <DialogFooter>
-          <Button variant="outline" onClick={handleCancelDelete}>
+          <Button
+            variant="outline"
+            onClick={() => onOpenChange(false)}
+            disabled={isDeleting}
+          >
             Cancelar
           </Button>
           <Button
             variant="destructive"
-            onClick={handleConfirmDelete}
+            onClick={onConfirm}
             data-cy="item-delete-confirm"
+            disabled={isDeleting}
           >
             Excluir
           </Button>

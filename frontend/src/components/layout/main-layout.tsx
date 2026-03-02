@@ -3,14 +3,14 @@ import { useState } from 'react'
 import { NavLink, Outlet } from 'react-router-dom'
 import { ThemeToggle } from '../theme-toggle'
 
+const navItems = [
+  { path: '/', label: 'Dashboard (Produção)', icon: <LayoutDashboardIcon size={20} /> },
+  { path: '/products', label: 'Produtos', icon: <PackageIcon size={20} /> },
+  { path: '/materials', label: 'Matérias-Primas', icon: <BoxIcon size={20} /> }
+]
+
 export function MainLayout() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
-
-  const navItems = [
-    { path: '/', label: 'Dashboard (Produção)', icon: <LayoutDashboardIcon size={20} /> },
-    { path: '/products', label: 'Produtos', icon: <PackageIcon size={20} /> },
-    { path: '/materials', label: 'Matérias-Primas', icon: <BoxIcon size={20} /> }
-  ]
 
   return (
     <div className="flex h-screen bg-background">

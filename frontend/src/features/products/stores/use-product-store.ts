@@ -60,11 +60,14 @@ export const useProductStore = create<ProductStore>((set) => ({
   },
 
   deleteProduct: async (productId) => {
+    set({ isLoading: true })
     try {
       await deleteProductRequest({ productId })
+      set({ isLoading: false })
       useProductStore.getState().fetchProducts()
       toast.success('Produto deletado!')
     } catch (error) {
+      set({ isLoading: false })
       toast.error(getErrorMessageByError(error))
     }
   }

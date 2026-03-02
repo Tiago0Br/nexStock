@@ -67,8 +67,8 @@ export function ProductsTable() {
       <DeleteItemDialog
         open={productToDelete !== null}
         onOpenChange={handleCancelDelete}
-        handleCancelDelete={handleCancelDelete}
-        handleConfirmDelete={handleConfirmDelete}
+        onConfirm={handleConfirmDelete}
+        isDeleting={isLoadingProducts}
       />
 
       <div className="border rounded-lg shadow-sm">
