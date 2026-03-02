@@ -32,13 +32,13 @@ public class ProductionServiceTest {
     public void testCalculateProductionPlan_ShouldCalculateCorrectly() {
         RawMaterial flour = new RawMaterial();
         flour.name = "Farinha";
-        flour.stockQuantity = 1000;
+        flour.stockQuantity = 1000.0;
         flour.unit = "G";
         flour.persist();
 
         RawMaterial egg = new RawMaterial();
         egg.name = "Ovo";
-        egg.stockQuantity = 10;
+        egg.stockQuantity = 10.0;
         egg.unit = "UN";
         egg.persist();
 
@@ -49,12 +49,12 @@ public class ProductionServiceTest {
         ProductComposition simpleCakeComposition1 = new ProductComposition();
         simpleCakeComposition1.product = simpleCake;
         simpleCakeComposition1.rawMaterial = flour;
-        simpleCakeComposition1.quantityRequired = 100;
+        simpleCakeComposition1.quantityRequired = 100.0;
 
         ProductComposition simpleCakeComposition2 = new ProductComposition();
         simpleCakeComposition2.product = simpleCake;
         simpleCakeComposition2.rawMaterial = egg;
-        simpleCakeComposition2.quantityRequired = 2;
+        simpleCakeComposition2.quantityRequired = 2.0;
 
         simpleCake.composition.add(simpleCakeComposition1);
         simpleCake.composition.add(simpleCakeComposition2);
@@ -75,13 +75,13 @@ public class ProductionServiceTest {
     public void testCalculateProductionPlan_ShouldPrioritizeTheMostExpensiveProduct() {
         RawMaterial flour = new RawMaterial();
         flour.name = "Farinha";
-        flour.stockQuantity = 1000;
+        flour.stockQuantity = 1000.0;
         flour.unit = "G";
         flour.persist();
 
         RawMaterial egg = new RawMaterial();
         egg.name = "Ovo";
-        egg.stockQuantity = 12;
+        egg.stockQuantity = 12.0;
         egg.unit = "UN";
         egg.persist();
 
@@ -92,12 +92,12 @@ public class ProductionServiceTest {
         ProductComposition simpleCakeComposition1 = new ProductComposition();
         simpleCakeComposition1.product = simpleCake;
         simpleCakeComposition1.rawMaterial = flour;
-        simpleCakeComposition1.quantityRequired = 100;
+        simpleCakeComposition1.quantityRequired = 100.0;
 
         ProductComposition simpleCakeComposition2 = new ProductComposition();
         simpleCakeComposition2.product = simpleCake;
         simpleCakeComposition2.rawMaterial = egg;
-        simpleCakeComposition2.quantityRequired = 2;
+        simpleCakeComposition2.quantityRequired = 2.0;
 
         simpleCake.composition.add(simpleCakeComposition1);
         simpleCake.composition.add(simpleCakeComposition2);
@@ -110,12 +110,12 @@ public class ProductionServiceTest {
         ProductComposition gourmetCakeComposition1 = new ProductComposition();
         gourmetCakeComposition1.product = gourmetCake;
         gourmetCakeComposition1.rawMaterial = flour;
-        gourmetCakeComposition1.quantityRequired = 300;
+        gourmetCakeComposition1.quantityRequired = 300.0;
 
         ProductComposition gourmetCakeComposition2 = new ProductComposition();
         gourmetCakeComposition2.product = gourmetCake;
         gourmetCakeComposition2.rawMaterial = egg;
-        gourmetCakeComposition2.quantityRequired = 3;
+        gourmetCakeComposition2.quantityRequired = 3.0;
 
         gourmetCake.composition.add(gourmetCakeComposition1);
         gourmetCake.composition.add(gourmetCakeComposition2);

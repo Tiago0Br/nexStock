@@ -64,7 +64,7 @@ public class ProductResourceTest {
             .statusCode(201)
             .body("id", notNullValue())
             .body("name", is("Barra de Chocolate"))
-            .body("composition[0].quantityRequired", is(250))
+            .body("composition[0].quantityRequired", is(250.0f))
             .body("composition[0].rawMaterial.name", is("Chocolate"));
     }
 }

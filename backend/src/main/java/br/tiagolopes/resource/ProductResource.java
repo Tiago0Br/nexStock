@@ -8,6 +8,7 @@ import br.tiagolopes.model.Product;
 import br.tiagolopes.model.ProductComposition;
 import br.tiagolopes.model.RawMaterial;
 import br.tiagolopes.service.ProductionService;
+import io.quarkus.panache.common.Sort;
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
 import jakarta.ws.rs.*;
@@ -25,7 +26,7 @@ public class ProductResource {
 
     @GET
     public List<Product> list() {
-        return Product.listAll();
+        return Product.listAll(Sort.by("id"));
     }
 
     @POST

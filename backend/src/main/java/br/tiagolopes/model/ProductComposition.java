@@ -23,5 +23,5 @@ public class ProductComposition extends PanacheEntity {
     @NotNull(message = "quantityRequired is required.")
     @Min(value = 0, message = "quantityRequired cannot be less than 0.")
     @Column(nullable = false)
-    public Integer quantityRequired;
+    public Double quantityRequired;
 }

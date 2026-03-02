@@ -3,6 +3,7 @@ package br.tiagolopes.resource;
 import br.tiagolopes.core.ErrorResponse;
 import br.tiagolopes.core.ErrorType;
 import br.tiagolopes.model.RawMaterial;
+import io.quarkus.panache.common.Sort;
 import jakarta.transaction.Transactional;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
@@ -15,7 +16,7 @@ import java.util.List;
 public class RawMaterialResource {
     @GET
     public List<RawMaterial> list() {
-        return RawMaterial.listAll();
+        return RawMaterial.listAll(Sort.by("id"));
     }
 
     @POST

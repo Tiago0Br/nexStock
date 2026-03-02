@@ -15,7 +15,7 @@ import java.util.stream.Collectors;
 @ApplicationScoped
 public class ProductionService {
     public ProductionPlanDTO calculateProductionPlan() {
-        Map<Long, Integer> virtualStock = RawMaterial.listAll().stream()
+        Map<Long, Double> virtualStock = RawMaterial.listAll().stream()
             .map(entity -> (RawMaterial) entity)
             .collect(Collectors.toMap(r -> r.id, r -> r.stockQuantity));
 
@@ -54,15 +54,15 @@ public class ProductionService {
         return new ProductionPlanDTO(plannedItems, totalValue, totalItems);
     }
 
-    private boolean canProduce(Product product, Map<Long, Integer> stock) {
+    private boolean canProduce(Product product, Map<Long, Double> stock) {
         if (product.composition == null || product.composition.isEmpty()) {
             return false;
         }
 
         for (ProductComposition item : product.composition) {
             Long materialId = item.rawMaterial.id;
-            Integer required = item.quantityRequired;
-            Integer available = stock.getOrDefault(materialId, 0);
+            Double required = item.quantityRequired;
+            Double available = stock.getOrDefault(materialId, 0.0);
 
             if (available < required) {
                 return false;
@@ -71,7 +71,7 @@ public class ProductionService {
         return true;
     }
 
-    private void deductStock(Product product, Map<Long, Integer> stock) {
+    private void deductStock(Product product, Map<Long, Double> stock) {
         for (ProductComposition item : product.composition) {
             Long materialId = item.rawMaterial.id;
             stock.compute(materialId, (k, currentStock) ->

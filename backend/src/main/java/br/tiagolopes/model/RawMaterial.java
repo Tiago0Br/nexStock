@@ -16,7 +16,7 @@ public class RawMaterial extends PanacheEntity {
     @NotNull(message = "stockQuantity is required.")
     @Min(value = 0, message = "stockQuantity cannot be less than 0.")
     @Column(nullable = false)
-    public Integer stockQuantity;
+    public Double stockQuantity;
 
     @NotBlank(message = "unit is required.")
     @Column(nullable = false, length = 10)

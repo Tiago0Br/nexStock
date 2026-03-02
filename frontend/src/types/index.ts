@@ -7,7 +7,7 @@ export enum ApiErrorType {
 
 export interface ApiErrorResponse {
   error: string
-  type: ApiErrorType
+  type?: ApiErrorType
 }
 
 export interface RawMaterial {

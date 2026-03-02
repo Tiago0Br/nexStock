@@ -13,13 +13,15 @@ export function getErrorMessageByError(error: unknown): string {
   if (isAxiosError(error)) {
     const errorResponse = error.response?.data as ApiErrorResponse
 
-    switch (errorResponse.type) {
+    switch (errorResponse?.type) {
       case ApiErrorType.CONFLICT:
         return 'Não é possível excluir o item pois ele possui vínculo!'
       case ApiErrorType.NOT_FOUND:
         return 'Recurso não encontrado!'
       case ApiErrorType.VALIDATION:
         return 'Verifique os campos e tente novamente!'
+      default:
+        break
     }
   }
 
